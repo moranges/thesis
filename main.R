@@ -53,12 +53,12 @@ inferNetwork <- function(grid, statExists, getNetworkData,
     gc()
   }
   
-  if (order.name == "髉timo OS+K2" || order.name == "al azar OS+K2") {
+  if (order.name == "贸ptimo OS+K2" || order.name == "al azar OS+K2") {
     
     if (is.null(k2.nodes.order <- get0(paste0(discretized.data.table.name, "_", order.name, "_", os.max.number.parents), envir = .GlobalEnv))) {
       browser()
-      if (order.name == "髉timo OS+K2") {
-        os.initial.nodes.order <- NodesOrder$new(an.order.name = "髉timo OS", an.order = optimal.order)
+      if (order.name == "贸ptimo OS+K2") {
+        os.initial.nodes.order <- NodesOrder$new(an.order.name = "贸ptimo OS", an.order = optimal.order)
       } else if (order.name == "al azar OS+K2") {
         os.initial.nodes.order <- NodesOrder$new(an.order.name = "al azar OS", an.order = getRandomOrderNotInList(get0(discretized.data.table.name, envir = .GlobalEnv)$get_attribute_names(), optimal.order)$unList())
       } else {
@@ -71,8 +71,8 @@ inferNetwork <- function(grid, statExists, getNetworkData,
     }
   } else {
     
-    if (order.name == "髉timo K2") {
-      k2.nodes.order <- NodesOrder$new(an.order.name = "髉timo K2", an.order = optimal.order)      
+    if (order.name == "贸ptimo K2") {
+      k2.nodes.order <- NodesOrder$new(an.order.name = "贸ptimo K2", an.order = optimal.order)      
     } else {
       k2.nodes.order <- NodesOrder$new(an.order.name = "al azar K2", an.order = getRandomOrderNotInList(get0(discretized.data.table.name, envir = .GlobalEnv)$get_attribute_names(), optimal.order)$unList())
     }
@@ -107,7 +107,7 @@ data.tables.function <- function(table.number, grid, getNetworkData, inferNetwor
 args <- commandArgs(TRUE)
 
 network.name = args[1]
-working.directory = paste0(path.expand("~"), "/../Dropbox/Public/Tesis/Experiments/", network.name)
+working.directory = paste0(path.expand("~"), "./", network.name)
 number.instances = as.integer(args[2])
 number.sets = as.integer(args[3])
 data.file = paste0(network.name, "_", number.sets, "_", number.instances, "_data")
@@ -119,8 +119,8 @@ k2.max.numbers.parents = c(2)
 
 network = importNetwork(working.directory, network.name)
 
-grid1 <- expand.grid(discretization.methods, numbers.intervals, c("髉timo OS+K2", "al azar K2+OS"), os.max.numbers.parents, k2.max.numbers.parents, stringsAsFactors = FALSE)
-grid2 <- expand.grid(discretization.methods, numbers.intervals, c("髉timo K2", "al azar K2"), c(0), k2.max.numbers.parents, stringsAsFactors = FALSE)
+grid1 <- expand.grid(discretization.methods, numbers.intervals, c("贸ptimo OS+K2", "al azar K2+OS"), os.max.numbers.parents, k2.max.numbers.parents, stringsAsFactors = FALSE)
+grid2 <- expand.grid(discretization.methods, numbers.intervals, c("贸ptimo K2", "al azar K2"), c(0), k2.max.numbers.parents, stringsAsFactors = FALSE)
 grid <- rbind(grid1, grid2)
 colnames(grid) <- c("discretization.methods", "numbers.intervals", "order.name", "os.max.numbers.parents", "k2.max.numbers.parents" )
 grid <- unname(tFrame(grid[order(grid[, 1], grid[, 2], grid[, 3], grid[, 4], grid[, 5]),]))
